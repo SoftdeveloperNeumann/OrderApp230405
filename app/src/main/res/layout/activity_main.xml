@@ -13,8 +13,9 @@
         app:layout_scrollFlags="scroll|enterAlways">
 
         <androidx.appcompat.widget.Toolbar
-            android:layout_height="?attr/actionBarSize"
-            android:layout_width="match_parent" />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
