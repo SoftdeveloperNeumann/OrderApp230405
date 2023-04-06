@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
                return when(position){
                    0 -> MainFragment()
                    else -> ItemFragment().apply {
-                       arguments
+                       arguments = Bundle().apply {
+                           putInt("item", position)
+                       }
                    }
 
                }

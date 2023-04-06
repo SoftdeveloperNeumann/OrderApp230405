@@ -24,13 +24,22 @@ class ItemFragment : Fragment() {
     ): View? {
         binding = FragmentItemBinding.inflate(inflater,container,false)
 
-        val adapter = ItemAdapter(Pasta.items)
+        val itemType = requireArguments().getInt("item")
+
+        val adapter = when(itemType){
+            1 -> ItemAdapter(Pizza.items)
+            2 -> ItemAdapter(Pasta.items)
+//            3 -> ItemAdapter(Pasta.items)
+            else -> null
+        }
+
+
         binding.itemList.adapter = adapter
 //        binding.pizzaList.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL,false)
         binding.itemList.layoutManager = GridLayoutManager(activity,2)
 //        binding.pizzaList.layoutManager = StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL)
 
-        adapter.setListener(object : ItemAdapter.Listener {
+        adapter?.setListener(object : ItemAdapter.Listener {
             override fun onItemClick(position: Int) {
                 val pizza = adapter.items[position]
                 Toast.makeText(activity, "Es wurde eine Pizza ${pizza.name} ausgewählt", Toast.LENGTH_SHORT).show()
