@@ -1,5 +1,6 @@
 package com.example.orderapp230405.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.orderapp230405.model.Drink
 import com.example.orderapp230405.model.Item
 import com.example.orderapp230405.model.Pasta
 import com.example.orderapp230405.model.Pizza
+import com.example.orderapp230405.ui.DetailActivity
 import com.example.orderapp230405.util.ItemAdapter
 
 
@@ -46,6 +48,13 @@ class ItemFragment : Fragment() {
                 Toast.makeText(activity, "Es wurde ${when (itemType){
                     1 -> "eine Pizza" ; 2 -> "das Nudelgericht" ; 3 -> "das Getränk"; else -> ""
                 }} ${item.name} ausgewählt", Toast.LENGTH_SHORT).show()
+
+                val bundle = Bundle()
+                bundle.putParcelable("item", item)
+
+                val intent = Intent(requireActivity(),DetailActivity::class.java)
+                intent.putExtra("item", bundle)
+                startActivity(intent)
             }
         })
         
