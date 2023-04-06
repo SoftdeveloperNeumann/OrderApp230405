@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.orderapp230405.databinding.FragmentItemBinding
+import com.example.orderapp230405.model.Drink
 import com.example.orderapp230405.model.Item
 import com.example.orderapp230405.model.Pasta
 import com.example.orderapp230405.model.Pizza
@@ -29,7 +30,7 @@ class ItemFragment : Fragment() {
         val adapter = when(itemType){
             1 -> ItemAdapter(Pizza.items)
             2 -> ItemAdapter(Pasta.items)
-//            3 -> ItemAdapter(Pasta.items)
+            3 -> ItemAdapter(Drink.items)
             else -> null
         }
 
@@ -42,7 +43,9 @@ class ItemFragment : Fragment() {
         adapter?.setListener(object : ItemAdapter.Listener {
             override fun onItemClick(position: Int) {
                 val pizza = adapter.items[position]
-                Toast.makeText(activity, "Es wurde eine Pizza ${pizza.name} ausgewählt", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Es wurde ${when (itemType){
+                    1 -> "eine Pizza" ; 2 -> "das Nudelgericht" ; 3 -> "das Getränk"; else -> ""
+                }} ${pizza.name} ausgewählt", Toast.LENGTH_SHORT).show()
             }
         })
         
