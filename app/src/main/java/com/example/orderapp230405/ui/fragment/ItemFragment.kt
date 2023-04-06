@@ -42,10 +42,10 @@ class ItemFragment : Fragment() {
 
         adapter?.setListener(object : ItemAdapter.Listener {
             override fun onItemClick(position: Int) {
-                val pizza = adapter.items[position]
+                val item = adapter.items[position]
                 Toast.makeText(activity, "Es wurde ${when (itemType){
                     1 -> "eine Pizza" ; 2 -> "das Nudelgericht" ; 3 -> "das Getränk"; else -> ""
-                }} ${pizza.name} ausgewählt", Toast.LENGTH_SHORT).show()
+                }} ${item.name} ausgewählt", Toast.LENGTH_SHORT).show()
             }
         })
         
